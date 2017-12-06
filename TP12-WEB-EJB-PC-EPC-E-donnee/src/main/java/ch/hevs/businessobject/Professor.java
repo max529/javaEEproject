@@ -15,18 +15,12 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="Professeurs")
-public class Professor {
+public class Professor extends Person{
 	
 	//Values
-	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE)
-	private int id;
-	@Column(name="prénom")
-	private String firstname;
-	@Column(name="nom")
-	private String lastname;	
-	@Column(name="grade")
-	private String role;
+
+	@Column(name="salaire")
+	private double salary;
 	
 	//Relations
 	@ManyToMany(mappedBy="professors", cascade = CascadeType.ALL)
@@ -36,33 +30,16 @@ public class Professor {
 	private List<Courses> courses;
 	
 	//Get and Set
-	public int getId() {
-		return id;
-	}
-	public void setId(int id) {
-		this.id = id;
-	}
-	public String getFirstname() {
-		return firstname;
-	}
-	public void setFirstname(String firstname) {
-		this.firstname = firstname;
-	}
-	public String getLastname() {
-		return lastname;
-	}
-	public void setLastname(String lastname) {
-		this.lastname = lastname;
-	}
-	public String getRole() {
-		return role;
-	}
-	public void setRole(String role) {
-		this.role = role;
-	}
+	
 	
 	public List<ResearchProjects> getResearchProjects() {
 		return researchProjects;
+	}
+	public double getSalary() {
+		return salary;
+	}
+	public void setSalary(double salary) {
+		this.salary = salary;
 	}
 	public void setResearchProjects(List<ResearchProjects> researchProjects) {
 		this.researchProjects = researchProjects;
@@ -77,10 +54,9 @@ public class Professor {
 	public Professor() {
 	}
 
-	public Professor(String firstname, String lastname, String role) {
-		this.firstname = firstname;
-		this.lastname = lastname;
-		this.role = role;
+	public Professor(String firstname, String lastname, double salary) {
+		super(lastname, firstname);
+		this.salary = salary;
 		
 	}
 	
