@@ -1,11 +1,14 @@
 package ch.hevs.businessobject;
 
+import java.util.List;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.PostPersist;
 import javax.persistence.Table;
@@ -28,6 +31,8 @@ public class Courses {
 	//Relations
 	@ManyToOne(cascade = CascadeType.ALL)
 	private Professor professor;
+	@ManyToMany(cascade = CascadeType.ALL)
+	private List<Students> students;
 	
 	//Get and Set
 	public int getId() {
@@ -59,6 +64,13 @@ public class Courses {
 	}
 	public void setProfessor(Professor professor) {
 		this.professor = professor;
+	}
+	
+	public List<Students> getStudents() {
+		return students;
+	}
+	public void setStudents(List<Students> students) {
+		this.students = students;
 	}
 	
 	//Constructor

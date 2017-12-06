@@ -19,6 +19,8 @@ public class Students extends Person{
 	
 	
 	//Relations
+	@ManyToMany(mappedBy="students", cascade = CascadeType.ALL)
+	private List<Courses> courses;
 	
 	
 	//Get and Set
@@ -30,6 +32,14 @@ public class Students extends Person{
 		this.number = number;
 	}
 	
+	public List<Courses> getCourses() {
+		return courses;
+	}
+
+	public void setCourses(List<Courses> courses) {
+		this.courses = courses;
+	}
+
 	//Constructor
 	public Students() {
 	}
